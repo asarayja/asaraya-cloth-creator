@@ -33,7 +33,10 @@ Full instructions: [Installation](docs/getting-started/installation.md)
 
 ## Documentation
 
-The full guide lives in [`docs/`](docs/) and is published as a GitBook.
+**[asarayja.github.io/asaraya-cloth-creator](https://asarayja.github.io/asaraya-cloth-creator/)**
+
+The source lives in [`docs/`](docs/) as plain Markdown. `build-site.py` renders it into
+the static site published on GitHub Pages — no dependencies, just `python3 build-site.py`.
 
 | | |
 |---|---|
