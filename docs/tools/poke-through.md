@@ -11,9 +11,24 @@ destroyed.
 | **Push Hidden Cloth Out** | Parts of the garment are buried inside the body |
 | **Fix Jiggle Clipping (running)** | Skin comes through only when the character runs |
 
+## Select what is worn underneath
+
+Same rule as [Pose Test](pose-test.md), and for the same reason: a `lowr` component
+**replaces** the legs and carries the leg geometry itself. Under a dress, the surface the
+fabric has to clear is the trousers, not the skin they cover.
+
+Select the **Base Body**, then anything worn **underneath**, then the garment last. Each
+layer gets its own pass, outermost last, and the report says how many vertices each layer
+accounted for.
+
+Measured on a test outfit, a dress over trousers: **0** vertices needed moving against the
+body, **6** against the trousers. Without the trousers selected, the tool finds nothing to
+do and reports success.
+
 ## Fix Poke-Through
 
-Select the **body first**, Shift-select the **garment**, and press **Fix Poke-Through**.
+Select the **body first**, Shift-select anything worn underneath, Shift-select the
+**garment**, and press **Fix Poke-Through**.
 
 It finds vertices that are genuinely inside the body and pushes them out just far enough,
 then smooths the result so the surface does not end up lumpy.
@@ -54,6 +69,17 @@ If skin only comes through while running, the cause is usually not the garment a
 it is that the garment has jiggle and the body does not. Press
 **Jiggle-Enable Body (uppr)** on the body first. If it persists, **Fix Jiggle Clipping
 (running)** widens the gap specifically in the poses where the movement happens.
+
+## It fixes the resting fit, not the pose
+
+Worth being clear about, because the name suggests more than it does. This tool clears
+the garment where it clips **standing still**. It cannot fix a breach that only happens
+in a pose.
+
+On the same test outfit, the sitting pose leaked 48 vertices at 65.6 mm before the fix and
+exactly the same afterwards. Nothing was broken — the thigh swings 70° forward and simply
+exits the hem. No amount of resting clearance changes that; the garment needs to be longer,
+wider, or reshaped in that area with **Push Out Selected**.
 
 ## The realistic workflow
 
