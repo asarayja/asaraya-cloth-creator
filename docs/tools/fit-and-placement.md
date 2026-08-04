@@ -3,6 +3,15 @@
 Tools for getting a garment into the right place and the right shape on the body. Most of
 them want the **body selected first** and the **garment second**.
 
+**Select anything worn underneath too.** A `lowr` component replaces the legs and carries
+the leg geometry itself, so a dress has to end up outside the *trousers*, not just outside
+the skin. Shrinkwrap without them buried a test dress 24.6 mm inside the trousers across
+56 vertices; with them selected, 81 vertices were lifted clear and 2 remained at 0.2 mm.
+
+The conform itself is still done against the **body** — that is the shape a tight garment
+should follow — and the under-layers are cleared afterwards. Conforming straight onto the
+trousers would print their seams and creases into the garment.
+
 ## Getting it roughly right
 
 | Button | What it does |
