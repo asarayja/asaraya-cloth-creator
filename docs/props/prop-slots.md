@@ -16,6 +16,19 @@ earrings. They are not skinned, so they do not deform — they follow the bone e
 | `p_lhand` | `PH_L_Hand` | Held items, left hand |
 | `p_rhand` | `PH_R_Hand` | Held items, right hand |
 
+## Three of these are not in the clothing menu
+
+GTA has eight prop slots. A clothing menu does not have to offer all eight, and the common
+ones do not.
+
+Checked against illenium-appearance's own source, it writes prop ids **0, 1, 2, 6 and 7**
+— Hat, Glasses, Ear, Watches, Bracelets. Ids **3 (`p_mouth`), 4 (`p_lhand`) and
+5 (`p_rhand`)** are never written, so a player has no way to select them.
+
+Those three still produce valid files, and a script can apply them directly. But if you
+are building for players to pick from a menu, stay on the five that work. **Convert to Ear
+Prop** warns you when you choose one of the other three.
+
 The wrist bones are worth pointing out. The obvious guess is `SKEL_L_Forearm`, and that
 is wrong — the game's own wrist props anchor to `RB_L_ForeArmRoll`, which is the roll bone
 that turns with the wrist. Anchor to the forearm instead and the watch stays put while the

@@ -16,22 +16,28 @@ and flips the faces back the right way so it does not render inverted.
 
 ## Which slot to use
 
-You have two choices, and both are legitimate:
+**Use `decl` (component 10).** It is a skinned clothing component, so it follows the
+fingers, and — the part that decides it — players can actually select it.
 
-* **`decl` (component 10)** — the classic route for rings. It is a skinned clothing
-  component, so it follows the fingers.
-* **`p_lhand` / `p_rhand` (props)** — rigid, attached to the hand bone. Use this if you
-  want rings handled the same way as bracelets and watches.
+GTA does have `p_lhand` and `p_rhand` prop slots, and an earlier version of this page
+suggested rings could go there. That was wrong in practice. The common FiveM clothing
+menus do not offer them: checking illenium-appearance's own source, it writes prop ids
+**0, 1, 2, 6 and 7** only — labelled Hat, Glasses, Ear, Watches and Bracelets. Ids 3
+(mouth), 4 (left hand) and 5 (right hand) are never written.
 
-There is no rule forcing one over the other. If you are already building bracelets as
-props, keeping rings in the same system is simpler to manage.
+A ring built as a hand prop is a perfectly valid file that most players have no way to
+put on. **Convert to Ear Prop** now warns when you pick one of those three slots.
+
+If you want rings handled like jewellery rather than clothing, the wrist slots
+(`p_lwrist` / `p_rwrist`) do reach everyone — you would be attaching them at the wrist
+rather than the finger.
 
 ## Rings as part of a hand set
 
 If you are making a whole set — rings plus a bracelet — you can join them into one object
-and convert it as a single wrist prop. That is fewer files to manage and fewer draw calls
-in game. Just remember the one-material-slot rule from
-[Earrings and piercings](earrings-and-piercings.md).
+and convert it as a single **wrist** prop. That is fewer files to manage, fewer draw calls
+in game, and it lands in a slot the menus actually offer. Just remember the
+one-material-slot rule from [Earrings and piercings](earrings-and-piercings.md).
 
 ## Common problems
 
