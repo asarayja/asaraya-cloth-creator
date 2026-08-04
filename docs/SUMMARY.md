@@ -14,6 +14,7 @@
 * [External garment](garments/external-garment.md)
 * [Your own clothing, from scratch](garments/your-own-clothing.md)
 * [Hair](garments/hair.md)
+* [Shoes](garments/shoes.md)
 * [Clothing slot and file name](garments/clothing-slot.md)
 
 ## Jewellery and props

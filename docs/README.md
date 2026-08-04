@@ -15,6 +15,7 @@ bracelets.
 | A model from another game or 3D program | To get it into FiveM | [External garment](garments/external-garment.md) |
 | Nothing yet | To build clothing from scratch | [Your own clothing](garments/your-own-clothing.md) |
 | Hair | It to move instead of being welded to the skull | [Hair](garments/hair.md) |
+| Shoes, especially heels | Them to sit on the ground, not in it | [Shoes](garments/shoes.md) |
 | Earrings or piercings | Them to sit in the ear | [Earrings and piercings](props/earrings-and-piercings.md) |
 | Rings | Them on both hands | [Rings](props/rings.md) |
 
