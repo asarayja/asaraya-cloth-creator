@@ -25,6 +25,7 @@ later.
 | `ped_default.sps` | What Rockstar's own body parts use. Pick it when matching a vanilla part |
 | `ped_default_cutout.sps` | Transparency that is fully on or off, no blending — cut-out patterns, eyelets. Cheaper than `ped_alpha` and free of sorting problems |
 | `ped_cloth.sps` | A garment driven by GTA's cloth simulation. Needs a `.yld` to go with it |
+| `ped_enveff.sps` | Patent leather, latex, wet vinyl — environment reflection. One of the reference shoes uses it |
 | `ped_decal.sps` | Sits on top of another surface: logos, prints, rings, anything in the `decl` slot |
 | `ped_hair_cutout_alpha.sps` | Hair cards |
 

@@ -60,6 +60,22 @@ it — the geometry is already right.
 This add-on does not write the clothing metadata, so it cannot set the flag for you.
 **Pre-Flight Check** measures the drop and reminds you when it looks like a heel.
 
+## Set Heel Height
+
+**Set Heel Height** moves the shoe so its sole sits exactly the chosen distance below the
+bare foot. Set `0` for a flat shoe, about `85` for heels. It moves the object, so the
+shape and the weights are untouched.
+
+**Durty Cloth Tool can set the height and ground placement too**, so this is not the only
+way. The reason to do it in Blender first is that everything else in the add-on measures
+against where the shoe actually is: [Pose Test](../tools/pose-test.md),
+[poke-through](../tools/poke-through.md) and the fit tools all read the geometry in the
+scene. A shoe sitting 20 mm too high makes every one of those numbers wrong, and fixing
+it at export time is too late to have caught anything.
+
+Whichever tool you use, the **high-heels flag** still has to be set in Durty Cloth Tool.
+Nothing in Blender can write it.
+
 ## What Pre-Flight tells you
 
 Run it with the Base Body in the scene and it reports one of:
@@ -72,7 +88,8 @@ Run it with the Base Body in the scene and it reports one of:
 ## Common problems
 
 **The shoe sinks into the ground in game** — the high-heels flag is not set on the
-component. That is a metadata setting, not a modelling one.
+component. That is a metadata setting, not a modelling one, and only Durty Cloth Tool
+writes it.
 
 **The character floats above the ground** — the sole is modelled too high. Pre-Flight
 catches this.
