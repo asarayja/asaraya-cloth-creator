@@ -4,7 +4,7 @@ CSS = r"""
 :root{
   --bg:#ffffff; --surface:#f6f7f9; --surface-2:#eceef2;
   --text:#14161a; --muted:#5f6672; --border:#e3e6eb;
-  --accent:#a25e07; --accent-soft:#fdf3e3; --accent-line:#e8bb70;
+  --accent:#bf2532; --accent-soft:#fdeced; --accent-line:#eda9ae;
   --shadow:0 1px 2px rgba(16,20,28,.06),0 8px 24px rgba(16,20,28,.08);
   --radius:10px; --side:252px; --toc:196px; --head:56px;
   --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
@@ -15,7 +15,7 @@ CSS = r"""
   :root:not([data-theme="light"]){
     --bg:#0e1014; --surface:#15181e; --surface-2:#1c2027;
     --text:#e7e9ee; --muted:#9aa1ae; --border:#252932;
-    --accent:#eab069; --accent-soft:#221a0f; --accent-line:#5a4523;
+    --accent:#ff7a7a; --accent-soft:#2a1315; --accent-line:#5e262b;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45);
     color-scheme:dark;
   }
@@ -23,7 +23,7 @@ CSS = r"""
 :root[data-theme="dark"]{
   --bg:#0e1014; --surface:#15181e; --surface-2:#1c2027;
   --text:#e7e9ee; --muted:#9aa1ae; --border:#252932;
-  --accent:#eab069; --accent-soft:#221a0f; --accent-line:#5a4523;
+  --accent:#ff7a7a; --accent-soft:#2a1315; --accent-line:#5e262b;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45);
   color-scheme:dark;
 }
@@ -48,7 +48,7 @@ a:hover{text-decoration:underline;text-underline-offset:3px}
 .brand:hover{text-decoration:none}
 .brand-mark{
   width:20px;height:20px;border-radius:6px;flex:none;
-  background:linear-gradient(140deg,var(--accent),#c98a3d 55%,#7c4a10);
+  background:linear-gradient(140deg,#e04350,#bf2532 55%,#7a121b);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);
 }
 .top-right{margin-left:auto;display:flex;align-items:center;gap:8px}
