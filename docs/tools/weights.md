@@ -33,6 +33,20 @@ Without it the garment jiggles and the body does not, so when the character runs
 stays still while the fabric swings — and pokes through. This is the single most common
 cause of "it looks fine standing still and breaks when running".
 
+## Empty vertex groups
+
+Weight transfer copies the body's **whole** group list, not just the groups that end up
+carrying weight. Auto-weighting a pair of trousers used to leave 95 groups of which 84
+were empty — the entire facial rig among them. They carry nothing and break nothing, but
+they follow the garment into the export and make the group list useless for seeing what
+the garment is actually bound to.
+
+**Auto-Weight** and **Add Jiggle** now drop them automatically and tell you how many.
+Jiggle bones are kept even when still empty, because a later step fills them in.
+
+Pre-Flight Check reports leftovers on garments weighted before this, or set up outside
+the add-on.
+
 ## Repair tools
 
 | Button | Use it when |
