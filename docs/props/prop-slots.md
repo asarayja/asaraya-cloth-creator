@@ -13,8 +13,8 @@ earrings. They are not skinned, so they do not deform — they follow the bone e
 | `p_mouth` | `SKEL_Head` | Masks, cigarettes, mouthpieces |
 | `p_lwrist` | `RB_L_ForeArmRoll` | Watches (left wrist) |
 | `p_rwrist` | `RB_R_ForeArmRoll` | Bracelets (right wrist) |
-| `p_lhand` | `PH_L_Hand` | Held items, left hand |
-| `p_rhand` | `PH_R_Hand` | Held items, right hand |
+| `p_lhand` | `SKEL_L_Hand` | Left hand |
+| `p_rhand` | `SKEL_R_Hand` | Right hand |
 
 ## Three of these are not in the clothing menu
 
@@ -50,6 +50,23 @@ Three other places would need to follow:
 The web UI then has to be rebuilt. The source is shipped alongside the build, so that is
 possible without hunting for it.
 
+### The hand anchors are not the PH bones
+
+Worth stating because this add-on had it wrong until v1.0.32, and the error was invisible.
+
+The skeleton has `PH_L_Hand` and `PH_R_Hand` — "prop holder" bones, where a weapon or a
+bottle goes. They are *not* the `p_lhand` / `p_rhand` anchors. Rockstar's anchor enum
+lists `ANCHOR_LEFT_HAND` (4) and `ANCHOR_PH_L_HAND` (11) as separate members, so anchor 4
+cannot be the PH bone or 11 would be a duplicate.
+
+The distance matters. Measured in both bundled skeletons, `PH_L_Hand` is a direct child of
+`SKEL_L_Hand`, identity rotation, translated **54.4 mm** straight out along the hand —
+further than a finger. A ring anchored there floats past the fingertips, which in game
+reads as "hand props are broken" when the real cause is the wrong bone.
+
+Neither anchor can be verified against a real file, because **no vanilla file uses anchors
+3, 4 or 5**. A dump of 5213 vanilla prop entries has drawables on 0, 1, 2, 6 and 7 only.
+
 ### Do not build on this yet
 
 Everything above is menu work, and none of it answers whether GTA actually **renders**
@@ -57,9 +74,23 @@ prop ids 4 and 5 on a freemode ped. Having the `PH_L_Hand` bone does not prove t
 exists for that ped model — the slot list may be defined in the ped's metadata, not by
 the skeleton.
 
-That question is unresolved as of writing. If the engine ignores those slots, the menu
-work is wasted, so it is worth testing that a hand prop appears at all before changing
-anything.
+That question is unresolved, and a fair amount of digging has not settled it. What is
+known:
+
+* The anchors are real engine data, the `.ymt` format accepts `anchorId=4`, and Rockstar's
+  own scripts pass 3, 4 and 5 to `SET_PED_PROP_INDEX` through generic loops. So there is
+  no sign of an outright refusal.
+* But vanilla ships **zero** drawables on those anchors, nobody on public GitHub ships one,
+  and the single empirical report of a working hand prop also reported that **other players
+  crashed**. That crash was real and was fixed in FiveM in February 2025 — but a bounds
+  check stopping a crash is not proof the prop then attaches correctly for everyone else.
+
+"The enum exists and the native accepts the argument" is exactly the class of evidence
+that turned out to be worthless twice already in this project, for hair physics and for
+the skirt bones. So: not proven broken, not proven working, with a crash history.
+
+Test it before building anything, and test it with somebody else watching your character
+— that is the case that failed before.
 
 The wrist bones are worth pointing out. The obvious guess is `SKEL_L_Forearm`, and that
 is wrong — the game's own wrist props anchor to `RB_L_ForeArmRoll`, which is the roll bone

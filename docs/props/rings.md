@@ -32,6 +32,11 @@ If you want rings handled like jewellery rather than clothing, the wrist slots
 (`p_lwrist` / `p_rwrist`) do reach everyone — you would be attaching them at the wrist
 rather than the finger.
 
+The component route is also what published ring mods actually use: they install to `accs`,
+`teef` or `decl`. A component is skinned to the skeleton, so a ring weighted to the finger
+bones follows the hand for free — no anchor, no menu fork, and no question about whether
+other players see it.
+
 ## Rings as part of a hand set
 
 If you are making a whole set — rings plus a bracelet — you can join them into one object
