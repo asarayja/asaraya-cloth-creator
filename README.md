@@ -5,7 +5,7 @@ It sits on top of [Sollumz](https://sollumz.org) and handles the part Sollumz le
 you: weights, jiggle, fit, slot naming, shaders and the checks that catch a broken asset
 before it reaches the game.
 
-**Current version: 1.0.20** · Blender 4.2+
+**Current version: 1.0.21** · Blender 4.2+
 
 ## Install
 
@@ -28,6 +28,7 @@ Full instructions: [Installation](docs/getting-started/installation.md)
 | **Pose Test** | poses the ped through six extremes and reports clipping in millimetres |
 | **Set Clothing Slot / Name** | names the file for its component or prop slot, inside and out |
 | **Convert to Ear Prop** | turns a skinned accessory into a rigid ped prop, verified against vanilla files |
+| **Add Hair Jiggle** | weights hair down the head/spine/spring chain so the length lags instead of being welded to the skull |
 | **Mirror to Other Hand** | builds the opposite hand's ring from one side |
 | **Set Shader + Surface** | ped shaders with measured metal / skin / fabric presets |
 
@@ -44,6 +45,7 @@ the static site published on GitHub Pages — no dependencies, just `python3 bui
 | You have a FiveM `.ydd` | [Existing garment](docs/garments/existing-garment.md) |
 | You have a model from elsewhere | [External garment](docs/garments/external-garment.md) |
 | You are starting from nothing | [Your own clothing](docs/garments/your-own-clothing.md) |
+| Hair | [Hair](docs/garments/hair.md) |
 | Earrings, rings, watches | [Prop slots](docs/props/prop-slots.md) |
 | Something is broken | [Troubleshooting](docs/troubleshooting/fits-wrong.md) |
 

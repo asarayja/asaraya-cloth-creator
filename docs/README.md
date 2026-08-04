@@ -14,6 +14,7 @@ bracelets.
 | A finished FiveM garment (`.ydd`) | It to fit properly and move | [Existing garment](garments/existing-garment.md) |
 | A model from another game or 3D program | To get it into FiveM | [External garment](garments/external-garment.md) |
 | Nothing yet | To build clothing from scratch | [Your own clothing](garments/your-own-clothing.md) |
+| Hair | It to move instead of being welded to the skull | [Hair](garments/hair.md) |
 | Earrings or piercings | Them to sit in the ear | [Earrings and piercings](props/earrings-and-piercings.md) |
 | Rings | Them on both hands | [Rings](props/rings.md) |
 
