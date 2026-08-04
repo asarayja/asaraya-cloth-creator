@@ -33,17 +33,20 @@ three.
 
 ## Hair Spring
 
-The one setting worth changing. It controls how much of the length borrows the spring
-bone — and, because the two go together, how far up the movement starts.
+The one setting worth changing. It controls how much of the tips borrow the spring bone.
 
 | Value | Result |
 | --- | --- |
-| `0.20` | Movement in the tips only. Subtle |
-| `0.35` | The default. Between the two reference styles |
-| `0.60` | Swing from mid-back down. Obvious motion |
+| `0.20` | Barely perceptible |
+| `0.35` | The default |
+| `0.60` | Clear movement |
+| `0.97` | The tips move almost entirely with the spring |
 
-Both ends of that range come from real hair files that work in game, so anything between
-them is safe.
+Every value in that range comes from a real hair file that works in game, so anything
+between them is safe.
+
+Where along the length the movement *starts* is fixed, and deliberately not a setting —
+see below.
 
 **Spring side** picks which breast spring the hair borrows. Right is what most working
 files use. *Split by side* sends left strands to the left spring and right strands to the
@@ -52,16 +55,21 @@ than assumed.
 
 ## Where the numbers come from
 
-Seven working FiveM hair files were measured. All of them use the same three bones and
-nothing else, and 64–70% of their vertices carry more than one, so the transitions are
-gradual rather than banded. The crossfade points were then fitted to both reference
+Eight working FiveM hair files were measured. All of them use the same three bones and
+nothing else, and 59–70% of their vertices carry more than one, so the transitions are
+gradual rather than banded. The crossfade points were then fitted to all three distinct
 profiles at once.
 
-The fit is close on the spring — the part that produces the movement — and looser in the
-middle of the head, because the reference files disagree with each other there. At
-three-quarters height one holds the head at 99% and the other has already dropped to 70%.
-No single curve reaches both, so the default sits between them, and **Hair Spring** moves
-you toward whichever you prefer.
+**Why the starting point is not a setting.** It looked at first as though a stronger
+spring also started higher up the hair, and an early version tied the two together. A
+third reference file disproved it: its spring is the strongest of the eight and starts
+*lower* than a middling one. The measured starting points are 0.25, 0.40 and 0.60 against
+strengths of 0.20, 0.97 and 0.60 — no relationship at all. With nothing to predict it
+from, the starting point is fixed at the middle of the measured range.
+
+The fit is closest on the strongest and subtlest files and loosest on the middling one,
+which starts its spring higher than the other two. Where the references disagree with
+each other, the curve sits between them.
 
 ## It replaces the existing weights
 
