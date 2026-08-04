@@ -5,8 +5,10 @@ where skin comes through the garment.
 
 ## Steps
 
-1. Select the **Base Body first**, Shift-select the **garment**.
-2. Press **Pose Test (find clipping)**.
+1. Select the **Base Body first**.
+2. Shift-select anything worn **underneath** — for a dress, the `lowr` trousers.
+3. Shift-select the **garment** last, so it is the active object.
+4. Press **Pose Test (find clipping)**.
 
 You get a report like:
 
@@ -34,6 +36,25 @@ The millimetre figure is how far the worst offender comes through. As a rough gu
 | Under about 10 mm | Minor. Often not visible in play |
 | 10–60 mm | Real clipping. Worth fixing |
 | Over 100 mm | Something structural is wrong, not just tight fabric |
+
+## Select what is worn underneath
+
+This changes the answer, and leaving it out is how a broken garment reports clean.
+
+A `lowr` component **replaces** the legs — the file carries the leg geometry itself,
+which is why every lowr file measured for this add-on runs from hip to ankle. So under a
+dress, the surface that actually breaks through is the trousers' legs, not bare skin. The
+bare legs are not even visible in game; the trousers cover them.
+
+Measured on a test outfit, the same dress in the sitting pose:
+
+| Selection | Result |
+| --- | --- |
+| Body + dress | **clean** |
+| Body + trousers + dress | **5 vertices, 13.7 mm through** |
+
+The report names which layer is at fault, so you know whether to change the dress or the
+trousers.
 
 ## The garment must be bound to the Base Body
 

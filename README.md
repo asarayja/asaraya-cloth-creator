@@ -5,7 +5,7 @@ It sits on top of [Sollumz](https://sollumz.org) and handles the part Sollumz le
 you: weights, jiggle, fit, slot naming, shaders and the checks that catch a broken asset
 before it reaches the game.
 
-**Current version: 1.0.25** · Blender 4.2+
+**Current version: 1.0.26** · Blender 4.2+
 
 ## Install
 
@@ -25,7 +25,7 @@ Full instructions: [Installation](docs/getting-started/installation.md)
 | **Auto-Weight / Add Jiggle** | skin weights from the body, GTA-compliant, jiggle included |
 | **Drape onto Body** | settles a garment with the cloth solver instead of projecting it geometrically |
 | **Pre-Flight Check** | one pass over geometry, limits, weights, LODs, materials, UVs and naming |
-| **Pose Test** | poses the ped through six extremes and reports clipping in millimetres |
+| **Pose Test** | poses the ped through six extremes and reports clipping in millimetres, measured against the layers actually worn |
 | **Set Clothing Slot / Name** | names the file for its component or prop slot, inside and out |
 | **Convert to Ear Prop** | turns a skinned accessory into a rigid ped prop, verified against vanilla files |
 | **Add Hair Jiggle** | weights hair down the head/spine/spring chain so the length lags instead of being welded to the skull |
