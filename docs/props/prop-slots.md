@@ -29,6 +29,38 @@ Those three still produce valid files, and a script can apply them directly. But
 are building for players to pick from a menu, stay on the five that work. **Convert to Ear
 Prop** warns you when you choose one of the other three.
 
+### Where that list lives
+
+If you run your own server, the omission is in the menu rather than the game, and the menu
+is yours to change. In illenium-appearance it is one line:
+
+```lua
+-- game/constants.lua
+constants.PED_PROPS_IDS = {0, 1, 2, 6, 7}
+```
+
+Three other places would need to follow:
+
+| File | What it needs |
+| --- | --- |
+| `game/customization.lua` | `propBlacklistMap` only knows the five ids. It returns `{}` for anything else, so it degrades safely — you just get no blacklist for the new slots |
+| `locales/*.lua` | Labels for the new slots |
+| `web/src/components/Appearance/Props.tsx` | **The real work.** Each prop id is written out as its own block — `settingsById[6]`, `handlePropDrawableChange(6, …)` — rather than looped over, so new slots have to be added by hand |
+
+The web UI then has to be rebuilt. The source is shipped alongside the build, so that is
+possible without hunting for it.
+
+### Do not build on this yet
+
+Everything above is menu work, and none of it answers whether GTA actually **renders**
+prop ids 4 and 5 on a freemode ped. Having the `PH_L_Hand` bone does not prove the slot
+exists for that ped model — the slot list may be defined in the ped's metadata, not by
+the skeleton.
+
+That question is unresolved as of writing. If the engine ignores those slots, the menu
+work is wasted, so it is worth testing that a hand prop appears at all before changing
+anything.
+
 The wrist bones are worth pointing out. The obvious guess is `SKEL_L_Forearm`, and that
 is wrong — the game's own wrist props anchor to `RB_L_ForeArmRoll`, which is the roll bone
 that turns with the wrist. Anchor to the forearm instead and the watch stays put while the
