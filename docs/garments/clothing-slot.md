@@ -42,14 +42,20 @@ Prop slots (`p_ears`, `p_head` and the rest) take **no** variant — they are na
 `p_ears_002`, not `p_ears_002_u`. Pick a prop slot and the panel hides the variant field
 by itself.
 
-## Renaming the file afterwards is not the same thing
+## About the name inside the file
 
-Changing the file name in your file browser is not equivalent. The file also carries a
-name **inside it**, and the two have to agree.
+A `.ydd` also carries a name **inside** it, and it does not have to match the file name.
+The game matches on the **file** name.
 
-This is a real trap: two of the test files in this project had been renamed on disk and
-kept their old internal name — `...^jbib_046_u.ydd` still called itself `jbib_006_u`
-inside. The button sets both at once.
+This is worth stating plainly because it is easy to assume otherwise. Of 28 downloaded
+hair files measured for this add-on, most carry an internal name inherited from whatever
+they were built from — `hair_000_u.ydd` calling itself `hair_019_u`, another calling
+itself `base mio` — and they all work in game.
+
+So renaming a downloaded file on disk is enough. **Set Clothing Slot / Name** sets both
+at once, which is worth doing for clothing you build yourself: it keeps the outliner
+readable and means the export lands with the right filename instead of needing a rename
+afterwards.
 
 ## The slot-change warning
 
