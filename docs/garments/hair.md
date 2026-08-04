@@ -31,6 +31,21 @@ the length lags behind the skull rather than being welded to it:
 **Add Hair Jiggle** writes that whole chain for you, with smooth crossfades between the
 three.
 
+## Movement
+
+Not every hair is meant to move, so the first choice is how much it should.
+
+| Mode | What it does | Use it for |
+| --- | --- | --- |
+| **Spring** | Head → torso → breast spring in the tips | Long hair advertised as having physics |
+| **Follow torso only** | Head blended into the spine, nothing bounces | The commonest setup in ordinary hair. The length still lags when the head turns |
+| **Rigid to the head** | Everything on `SKEL_Head` | Short, close-fitting hair. No movement at all |
+
+All three come from real files. Of twenty ordinary hair files measured, most are
+*Follow torso only*, two carry a spring anyway, and one is fully rigid.
+
+**Hair Spring** below only applies in **Spring** mode.
+
 ## Hair Spring
 
 The one setting worth changing. It controls how much of the tips borrow the spring bone.
@@ -55,8 +70,8 @@ than assumed.
 
 ## Where the numbers come from
 
-Eight working FiveM hair files were measured. All of them use the same three bones and
-nothing else, and 59–70% of their vertices carry more than one, so the transitions are
+28 working FiveM hair files were measured — eight sold as having physics, twenty
+ordinary. The eight all use the same three bones and nothing else, and 59–70% of their vertices carry more than one, so the transitions are
 gradual rather than banded. The crossfade points were then fitted to all three distinct
 profiles at once.
 
@@ -91,8 +106,17 @@ length. Lower **Hair Spring**, or check the mesh is not far shorter than it look
 **Nothing moves at all** — the hair may be bound to the wrong armature. Select it with
 the Base Body in the scene and run the tool again.
 
-**It renders white or solid** — that is the shader, not the weighting. Hair needs
-`ped_hair_cutout_alpha.sps`. See [Shader and surface](../tools/shader-and-surface.md).
+**It renders white or solid** — that is the shader, not the weighting. Hair uses either
+`ped_hair_cutout_alpha.sps` or `ped_hair_spiked.sps`; both are in the shader list. See
+[Shader and surface](../tools/shader-and-surface.md).
+
+## What is deliberately not reproduced
+
+Two bones carry real weight in some ordinary hair files and are left alone here:
+`MH_Hair_Crown` and `MH_Hair_Scale`, at up to 17%. They are not spring bones, and what
+drives them has not been verified — so the add-on writes nothing to them rather than
+guessing. If your hair came with weights on them and you run this tool, they are replaced
+along with the rest.
 
 **The file never appears in game** — hair is component 2, and the file name has to say
 so. See [Clothing slot](clothing-slot.md).
