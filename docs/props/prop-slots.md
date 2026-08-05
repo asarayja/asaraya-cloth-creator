@@ -13,89 +13,53 @@ earrings. They are not skinned, so they do not deform — they follow the bone e
 | `p_mouth` | `SKEL_Head` | Masks, cigarettes, mouthpieces |
 | `p_lwrist` | `RB_L_ForeArmRoll` | Watches (left wrist) |
 | `p_rwrist` | `RB_R_ForeArmRoll` | Bracelets (right wrist) |
-| `p_lhand` | `SKEL_L_Hand` | Left hand |
-| `p_rhand` | `SKEL_R_Hand` | Right hand |
-
-## Three of these are not in the clothing menu
-
-GTA has eight prop slots. A clothing menu does not have to offer all eight, and the common
-ones do not.
-
-Checked against illenium-appearance's own source, it writes prop ids **0, 1, 2, 6 and 7**
-— Hat, Glasses, Ear, Watches, Bracelets. Ids **3 (`p_mouth`), 4 (`p_lhand`) and
-5 (`p_rhand`)** are never written, so a player has no way to select them.
-
-Those three still produce valid files, and a script can apply them directly. But if you
-are building for players to pick from a menu, stay on the five that work. **Convert to Ear
-Prop** warns you when you choose one of the other three.
-
-### Where that list lives
-
-If you run your own server, the omission is in the menu rather than the game, and the menu
-is yours to change. In illenium-appearance it is one line:
-
-```lua
--- game/constants.lua
-constants.PED_PROPS_IDS = {0, 1, 2, 6, 7}
-```
-
-Three other places would need to follow:
-
-| File | What it needs |
-| --- | --- |
-| `game/customization.lua` | `propBlacklistMap` only knows the five ids. It returns `{}` for anything else, so it degrades safely — you just get no blacklist for the new slots |
-| `locales/*.lua` | Labels for the new slots |
-| `web/src/components/Appearance/Props.tsx` | **The real work.** Each prop id is written out as its own block — `settingsById[6]`, `handlePropDrawableChange(6, …)` — rather than looped over, so new slots have to be added by hand |
-
-The web UI then has to be rebuilt. The source is shipped alongside the build, so that is
-possible without hunting for it.
-
-### The hand anchors are not the PH bones
-
-Worth stating because this add-on had it wrong until v1.0.32, and the error was invisible.
-
-The skeleton has `PH_L_Hand` and `PH_R_Hand` — "prop holder" bones, where a weapon or a
-bottle goes. They are *not* the `p_lhand` / `p_rhand` anchors. Rockstar's anchor enum
-lists `ANCHOR_LEFT_HAND` (4) and `ANCHOR_PH_L_HAND` (11) as separate members, so anchor 4
-cannot be the PH bone or 11 would be a duplicate.
-
-The distance matters. Measured in both bundled skeletons, `PH_L_Hand` is a direct child of
-`SKEL_L_Hand`, identity rotation, translated **54.4 mm** straight out along the hand —
-further than a finger. A ring anchored there floats past the fingertips, which in game
-reads as "hand props are broken" when the real cause is the wrong bone.
-
-Neither anchor can be verified against a real file, because **no vanilla file uses anchors
-3, 4 or 5**. A dump of 5213 vanilla prop entries has drawables on 0, 1, 2, 6 and 7 only.
-
-### Do not build on this yet
-
-Everything above is menu work, and none of it answers whether GTA actually **renders**
-prop ids 4 and 5 on a freemode ped. Having the `PH_L_Hand` bone does not prove the slot
-exists for that ped model — the slot list may be defined in the ped's metadata, not by
-the skeleton.
-
-That question is unresolved, and a fair amount of digging has not settled it. What is
-known:
-
-* The anchors are real engine data, the `.ymt` format accepts `anchorId=4`, and Rockstar's
-  own scripts pass 3, 4 and 5 to `SET_PED_PROP_INDEX` through generic loops. So there is
-  no sign of an outright refusal.
-* But vanilla ships **zero** drawables on those anchors, nobody on public GitHub ships one,
-  and the single empirical report of a working hand prop also reported that **other players
-  crashed**. That crash was real and was fixed in FiveM in February 2025 — but a bounds
-  check stopping a crash is not proof the prop then attaches correctly for everyone else.
-
-"The enum exists and the native accepts the argument" is exactly the class of evidence
-that turned out to be worthless twice already in this project, for hair physics and for
-the skirt bones. So: not proven broken, not proven working, with a crash history.
-
-Test it before building anything, and test it with somebody else watching your character
-— that is the case that failed before.
 
 The wrist bones are worth pointing out. The obvious guess is `SKEL_L_Forearm`, and that
-is wrong — the game's own wrist props anchor to `RB_L_ForeArmRoll`, which is the roll bone
-that turns with the wrist. Anchor to the forearm instead and the watch stays put while the
-hand rotates under it.
+is wrong — the game's own wrist props anchor to `RB_L_ForeArmRoll`, the roll bone that
+turns with the wrist. Anchor to the forearm instead and the watch stays put while the hand
+rotates under it.
+
+## Where are the hand slots?
+
+GTA's anchor enum has eight entries. Two of them — `ANCHOR_LEFT_HAND` (4) and
+`ANCHOR_RIGHT_HAND` (5) — are deliberately **not offered by this add-on**, because they
+were tested end to end and do not work.
+
+What the test consisted of:
+
+1. A prop built for `p_rhand`, anchored to `SKEL_R_Hand`
+2. Named `p_rhand_001.ydd` and fed to Durty Cloth Tool
+3. Durty labels those slots **"unused"** and refuses them, falling back to head
+4. Corrected by hand anyway — the `.ymt` anchor edited in CodeWalker, the `shop.meta`
+   rewritten to `ANCHOR_RIGHT_HAND` with matching drawable indices
+5. Installed on a live server and queried with `GetNumberOfPedPropDrawableVariations`
+
+**The slot still registered nothing**, while 0, 1, 2, 6 and 7 reported their usual counts
+on the same ped. It failed at the metadata stage, before the question of whether the game
+would render it was ever reached.
+
+That is one attempt on one server rather than a proof, but it lines up with everything
+else: vanilla ships **zero** drawables on those anchors out of 5213 prop entries, nobody
+publishes one, no clothing menu writes them, and the author of the standard build tool
+marks them unused.
+
+Offering a slot that produces a file nobody can wear is worse than not offering it, so
+they are gone.
+
+`p_mouth` is kept despite having the same menu problem — masks and cigarettes are a real
+use for it and a script can apply it directly. **Convert to Prop** warns when you pick it.
+
+## Rings
+
+Rings are the reason the hand slots keep coming up, and the answer is not a prop at all.
+
+Put them in a **component**. `decl` (10) is the usual choice and what most published ring
+mods use, but nothing forces it — `accs` and `teef` are both used in the wild, and any
+component slot works if you would rather keep rings somewhere else in your own setup.
+
+A component is skinned to the skeleton, so a ring weighted to the finger bones follows the
+hand for free: no anchor, no menu patch, and no question about whether other players see
+it. See [Rings](rings.md).
 
 ## Making a prop
 

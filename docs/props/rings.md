@@ -16,33 +16,39 @@ and flips the faces back the right way so it does not render inverted.
 
 ## Which slot to use
 
-**Use `decl` (component 10).** It is a skinned clothing component, so it follows the
-fingers, and — the part that decides it — players can actually select it.
+**A component, not a prop.** `decl` (10) is the usual choice and what most published ring
+mods use — but nothing forces it. `accs` and `teef` are both used in the wild, and any
+component slot works if you would rather keep rings somewhere else in your own setup. Pick
+the one that fits how you organise clothing.
 
-GTA does have `p_lhand` and `p_rhand` prop slots, and an earlier version of this page
-suggested rings could go there. That was wrong in practice. The common FiveM clothing
-menus do not offer them: checking illenium-appearance's own source, it writes prop ids
-**0, 1, 2, 6 and 7** only — labelled Hat, Glasses, Ear, Watches and Bracelets. Ids 3
-(mouth), 4 (left hand) and 5 (right hand) are never written.
+A component is skinned to the skeleton, so a ring weighted to the finger bones follows the
+hand for free. No anchor, no menu patch, and no question about whether other players see
+it.
 
-A ring built as a hand prop is a perfectly valid file that most players have no way to
-put on. **Convert to Ear Prop** now warns when you pick one of those three slots.
+## Why not a hand prop
 
-If you want rings handled like jewellery rather than clothing, the wrist slots
-(`p_lwrist` / `p_rwrist`) do reach everyone — you would be attaching them at the wrist
-rather than the finger.
+GTA has `p_lhand` and `p_rhand` anchors, and an earlier version of this page suggested
+rings could go there. They cannot, and this add-on no longer offers those slots at all.
 
-The component route is also what published ring mods actually use: they install to `accs`,
-`teef` or `decl`. A component is skinned to the skeleton, so a ring weighted to the finger
-bones follows the hand for free — no anchor, no menu fork, and no question about whether
-other players see it.
+They were tested the whole way: a prop built for `p_rhand`, Durty Cloth Tool labelling the
+slot **"unused"** and refusing it, the `.ymt` and `shop.meta` corrected by hand anyway, and
+the result installed on a live server. The slot registered nothing, while the five working
+slots reported their usual counts on the same ped.
 
-## Rings as part of a hand set
+That matches everything else about them — vanilla ships zero drawables on those anchors,
+no clothing menu writes them, and nobody publishes one. See
+[Prop slots](prop-slots.md) for the full account.
 
-If you are making a whole set — rings plus a bracelet — you can join them into one object
-and convert it as a single **wrist** prop. That is fewer files to manage, fewer draw calls
-in game, and it lands in a slot the menus actually offer. Just remember the
-one-material-slot rule from [Earrings and piercings](earrings-and-piercings.md).
+## Rings plus a bracelet
+
+If you are making a whole set, you have two ways to go. Keep the rings as a component and
+the bracelet as a `p_rwrist` prop — they are independent, so both show at once. Or join
+everything into one object and convert it as a single wrist prop: fewer files, fewer draw
+calls, but the rings then hang off the wrist bone rather than the fingers, which shows when
+the hand moves.
+
+If you join them, remember the one-material-slot rule from
+[Earrings and piercings](earrings-and-piercings.md).
 
 ## Common problems
 
