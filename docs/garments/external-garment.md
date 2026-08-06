@@ -79,8 +79,13 @@ into a crack. Before this was handled, clearing the body out of a dress split 33
 718 seams, the worst by 118 mm — the straps came apart into ribbons.
 
 **Fit External to Body**, the poke-through tools and **Drape** now all keep coincident
-vertices together. Measured across 33 meshes: **zero** seams opened, and no topology
-changed.
+vertices together. Measured across 47 meshes, female and male: **zero** seams opened, and
+no topology changed.
+
+Coincident vertices are found by proximity rather than by a rounded coordinate. Rounding
+looks equivalent and is not: a transform leaves about a ten-thousandth of a millimetre of
+float drift, and two points either side of a rounding boundary land in different buckets.
+On a male t-shirt that let 2 of 128 seams through, which opened by 8.5 mm.
 
 ### One outfit in several pieces
 
@@ -90,6 +95,10 @@ trousers it belongs to, and 33 mm too tight, because a thin band carries too few
 groups to fit reliably.
 
 Join the pieces with **Ctrl+J first**, then fit once. The same belt then sat 4.5 mm out.
+
+This applies to any file that opens with several objects — one male outfit arrived as
+seven, including two four-vertex scraps that landed 160 mm off the body on their own.
+Joined first, they inherit the main garment's placement and the problem disappears.
 
 The join keeps one material per piece, so each keeps its own texture — that is normal for
 GTA clothing, and Pre-Flight will confirm it rather than telling you to merge them.
