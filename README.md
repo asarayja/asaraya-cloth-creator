@@ -5,7 +5,7 @@ It sits on top of [Sollumz](https://sollumz.org) and handles the part Sollumz le
 you: weights, jiggle, fit, slot naming, shaders and the checks that catch a broken asset
 before it reaches the game.
 
-**Current version: 1.0.34** · Blender 4.2+
+**Current version: 1.0.35** · Blender 4.2+
 
 ## Install
 

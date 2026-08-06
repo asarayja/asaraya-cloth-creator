@@ -11,6 +11,11 @@ The difference from a FiveM garment is that this one has **the wrong proportions
 1. **Build Full Body**.
 2. Import the garment into Blender the normal way (`.fbx`, `.obj`, `.blend` — whatever
    fits).
+
+   Opening the source file and building the body **into** it works just as well, if the
+   garment is already set up there. **Fit External to Body** removes the source rig for
+   you either way — a Sims dress arrives bound to a 165-bone rig of its own, and leaving
+   it would mean the garment is deformed by two skeletons at once after weighting.
 3. Select the **Base Body first**, Shift-select the **garment**.
 4. **Fit External to Body** — scales and places the garment onto the body.
 5. **Fit to Body (rough)** if it is still clearly too large or too small.
