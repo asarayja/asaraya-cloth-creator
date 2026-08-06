@@ -5,7 +5,7 @@ It sits on top of [Sollumz](https://sollumz.org) and handles the part Sollumz le
 you: weights, jiggle, fit, slot naming, shaders and the checks that catch a broken asset
 before it reaches the game.
 
-**Current version: 1.0.33** · Blender 4.2+
+**Current version: 1.0.34** · Blender 4.2+
 
 ## Install
 
@@ -21,6 +21,7 @@ Full instructions: [Installation](docs/getting-started/installation.md)
 
 | | |
 |---|---|
+| **Fit External to Body** | matches the source game's bone groups to the body instead of guessing from a bounding box |
 | **Build Full Body** | assembles a weight-source ped with breast jiggle generated on the vanilla body shape |
 | **Auto-Weight / Add Jiggle** | skin weights from the body, GTA-compliant, jiggle included |
 | **Drape onto Body** | settles a garment with the cloth solver instead of projecting it geometrically |
