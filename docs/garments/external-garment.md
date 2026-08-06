@@ -17,8 +17,8 @@ The difference from a FiveM garment is that this one has **the wrong proportions
    you either way — a Sims dress arrives bound to a 165-bone rig of its own, and leaving
    it would mean the garment is deformed by two skeletons at once after weighting.
 3. Select the **Base Body first**, Shift-select the **garment**.
-4. **Fit External to Body** — scales and places the garment onto the body, and removes
-   the source game's rig.
+4. **Fit External to Body** — scales and places the garment onto the body, removes the
+   source game's rig, and clears the body out of the fabric.
 5. **Convert to FiveM Drawable** — turns the mesh into something the GTA format
    understands.
 6. **Auto-Weight (new garment)** — the garment has no usable weights, so you build them
@@ -47,6 +47,28 @@ garment to the body surface:
 | Bikini set | 63 mm | **24 mm** |
 | Dress | 67 mm | **13 mm** |
 | Dress, full length | 85 mm | **21 mm** |
+
+### Placing it is only half the job
+
+A garment can be scaled and positioned perfectly and still have the body straight through
+it, because the figure it was made for is a different shape. Measured on the same three
+garments right after a good-looking fit, the share of garment vertices sitting **inside**
+the body was 38%, 55% and 55% — the skirt collapsed onto the legs, the body showing
+through the front.
+
+So the button finishes the job: after placing the garment it pushes the body out of the
+fabric. That takes those figures to 1%, 3% and 3%, with nothing deeper than a millimetre.
+
+This is worth knowing about because the obvious way to measure a fit — distance from the
+garment to the nearest point on the body — cannot see the problem at all. A garment buried
+13 mm inside the body scores exactly the same as one sitting 13 mm outside it. The
+measurement has to be signed.
+
+What the fit still cannot do is change the garment's shape. A bandeau top cut for a
+slimmer figure will sit below a larger bust however well it is placed; that is sculpting
+or [Drape](../tools/drape.md), not fitting.
+
+### About the scale
 
 The scale estimates tell the same story. The bounding box guessed 1.64, 1.69 and 1.03 for
 the three — wildly inconsistent, because a bikini's box says nothing about how tall its
