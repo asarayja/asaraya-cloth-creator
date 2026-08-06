@@ -16,8 +16,7 @@ trousers would print their seams and creases into the garment.
 
 | Button | What it does |
 | --- | --- |
-| **Fit External to Body** | Scales and places an imported garment onto the body. The first thing to try for anything from outside GTA |
-| **Fit to Body (rough)** | A coarser fit for when the size is clearly wrong |
+| **Fit External to Body** | Scales and places an imported garment onto the body, and strips the source game's rig. The first thing to try for anything from outside GTA. It matches the source rig's bone groups where it can — see [External garment](../garments/external-garment.md) |
 | **Fit to Reference Garment** | Fits to another garment instead of to the body. If you have a FiveM garment that already sits perfectly, this usually lands closest |
 
 ## Getting it exactly right

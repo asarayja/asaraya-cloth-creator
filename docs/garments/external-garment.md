@@ -17,17 +17,15 @@ The difference from a FiveM garment is that this one has **the wrong proportions
    you either way — a Sims dress arrives bound to a 165-bone rig of its own, and leaving
    it would mean the garment is deformed by two skeletons at once after weighting.
 3. Select the **Base Body first**, Shift-select the **garment**.
-4. **Fit External to Body** — scales and places the garment onto the body.
-5. **Fit to Body (rough)** if it is still clearly too large or too small.
-
-   Most of the time step 5 is not needed. See below for why.
-6. **Convert to FiveM Drawable** — turns the mesh into something the GTA format
+4. **Fit External to Body** — scales and places the garment onto the body, and removes
+   the source game's rig.
+5. **Convert to FiveM Drawable** — turns the mesh into something the GTA format
    understands.
-7. **Auto-Weight (new garment)** — the garment has no usable weights, so you build them
+6. **Auto-Weight (new garment)** — the garment has no usable weights, so you build them
    from scratch here.
-8. **Set Shader** → pick shader and surface. See [Shader and surface](../tools/shader-and-surface.md).
-9. **Set Clothing Slot / Name** → pick the clothing slot. See [Clothing slot](clothing-slot.md).
-10. **Pre-Flight Check**, fix anything marked ERROR, and export.
+7. **Set Shader** → pick shader and surface. See [Shader and surface](../tools/shader-and-surface.md).
+8. **Set Clothing Slot / Name** → pick the clothing slot. See [Clothing slot](clothing-slot.md).
+9. **Pre-Flight Check**, fix anything marked ERROR, and export.
 
 ## It uses the source game's rig, if the garment still has it
 
