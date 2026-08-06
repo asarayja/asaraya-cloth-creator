@@ -46,6 +46,11 @@ Nothing here changes the garment — it only reports.
   own geometry
 * A material that is not a GTA shader
 * No texture assigned
+* A shader that is not a ped shader. Imported garments land on `default.sps`, which
+  exports without complaint and looks wrong in game
+* Several slots on the same shader **and** the same texture — those are redundant. Slots
+  with different textures are left alone, because that is how a garment made of several
+  pieces works
 * No `DiffuseSampler` specifically — a material can carry a normal map and a spec map and
   still render pure white, because the diffuse is what supplies the colour
 

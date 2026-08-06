@@ -64,6 +64,36 @@ garment to the nearest point on the body — cannot see the problem at all. A ga
 13 mm inside the body scores exactly the same as one sitting 13 mm outside it. The
 measurement has to be signed.
 
+### Meshes from a game are split along their seams
+
+This is the single thing that most often destroys a garment, and it is invisible until it
+happens.
+
+A game stores UVs per vertex, so wherever the texture has a seam the mesh carries **two
+vertices on the same point with no edge between them**. Across the Sims garments measured
+for this add-on that runs from 21% of the mesh to **100%** of it. Nothing about the vertex
+or face count reveals it.
+
+Any tool that moves vertices then moves each side of a seam separately, and the seam opens
+into a crack. Before this was handled, clearing the body out of a dress split 330 of its
+718 seams, the worst by 118 mm — the straps came apart into ribbons.
+
+**Fit External to Body**, the poke-through tools and **Drape** now all keep coincident
+vertices together. Measured across 33 meshes: **zero** seams opened, and no topology
+changed.
+
+### One outfit in several pieces
+
+The Sims often splits an outfit — trousers and a belt, a top and its sleeves. Fit them
+separately and they drift apart: a belt fitted on its own landed **161 mm** above the
+trousers it belongs to, and 33 mm too tight, because a thin band carries too few bone
+groups to fit reliably.
+
+Join the pieces with **Ctrl+J first**, then fit once. The same belt then sat 4.5 mm out.
+
+The join keeps one material per piece, so each keeps its own texture — that is normal for
+GTA clothing, and Pre-Flight will confirm it rather than telling you to merge them.
+
 What the fit still cannot do is change the garment's shape. A bandeau top cut for a
 slimmer figure will sit below a larger bust however well it is placed; that is sculpting
 or [Drape](../tools/drape.md), not fitting.

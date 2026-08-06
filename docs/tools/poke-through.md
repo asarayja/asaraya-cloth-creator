@@ -42,6 +42,10 @@ Three things it does deliberately, each because of a real failure:
   visible bumps, so the offset is spread across the surrounding surface.
 * **Anything still deep afterwards gets a second pass.** Isolated vertices buried far
   inside do not come out on the first attempt.
+* **Vertices sharing a point move together.** A mesh from another game is split along its
+  UV seams, and pushing each side out along its own normal opens the seam into a crack —
+  330 of 718 seams on one dress, the worst by 118 mm, which shredded its straps into
+  ribbons.
 
 Adjust **Minimum depth** at the bottom left afterwards if it is being too eager or too
 timid.

@@ -29,6 +29,21 @@ skirt that floats away from the hips, a dress that ignores the waist. It is not 
 substitute for fitting: if the garment is the wrong size, use
 [Fit and placement](fit-and-placement.md) first.
 
+## Garments from other games
+
+A mesh ripped from a game is split along its UV seams — two vertices on the same point
+with no edge between them. The cloth solver pulls along edges, so each side of a seam fell
+on its own and the garment came apart: measured on a Sims dress, **395 of 718 seams
+opened, the worst by seven metres**.
+
+Drape now runs the simulation on a welded stand-in and writes the result back onto the
+original vertices, so the garment's own topology is never touched. Seams stay shut.
+
+Binding the duplicates with zero-length springs was tried first and was worse. The seams
+held perfectly — zero of 718 opened — while the skirt exploded into a heap of intersecting
+shards, because a spring of no length at high stiffness produces absurd forces. One number
+passing is not the same as the thing working.
+
 ## A note on self-collision
 
 Blender's cloth solver has a self-collision option, and turning it on is the single
