@@ -48,6 +48,29 @@ reference clothing, 92 contain `normal`, 92 contain `spec`, and the rest are `bu
 | `noise` | `AnisoNoiseSpecSampler` — the hair shaders' slot |
 | anything else | `DiffuseSampler` |
 
+### When the name says nothing
+
+Files called `1.dds`, `A.dds` or `esp.dds` exist in real clothing folders, and a name like
+that carries no information at all.
+
+For those, the image itself is checked. A normal map stores directions, so a flat surface
+comes out around (0.5, 0.5, 1.0) and blue dominates red by a wide margin — measured across
+the reference textures, blue-minus-red averages **+0.39** on files named `normal` against
+**−0.19** on spec and **−0.20** on diffuse.
+
+Tested by renaming real textures to `t0.dds`, `t1.dds` and so on so the name gave nothing
+away: **3 of 4** normal maps were recognised from their pixels, with **no** spec or diffuse
+wrongly claimed. The one miss was a baked normal map sitting just under the threshold,
+which is the intended trade — a colour map landing on the normal slot is worse than a
+normal map falling back to the colour slot, where you will see it immediately.
+
+**Spec and diffuse get no such check, because they cannot be told apart this way.** Both
+are often greyscale; one reference diffuse is a flat 0.75 grey, indistinguishable from a
+spec map by any measure available here. If your spec file has no `spec` in its name, assign
+it yourself.
+
+### Several garments in one folder
+
 When a folder holds several garments' textures, the file sharing the longest name prefix
 with the one you picked wins — so `hair_diff_123` takes `hair_normal_123` rather than
 `feet_normal_000`.
