@@ -96,5 +96,9 @@ Put the maps in the same folder, or assign that one by hand.
 **It picked the wrong file** — you will have been warned if the name did not match. Run it
 again pointing at the correct file; the picked file always wins for its own slot.
 
+**You need the colour variants as .ytd files** — see
+[Building .ytd texture files](ytd.md), which turns a folder of `.dds` into one dictionary
+per variant.
+
 **You only want to look at a texture, not assign it** — use
 [Preview Texture](texture-preview.md), which is never exported.

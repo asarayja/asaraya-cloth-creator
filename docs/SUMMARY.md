@@ -28,6 +28,7 @@
 * [Pre-Flight Check](tools/pre-flight-check.md)
 * [Shader and surface](tools/shader-and-surface.md)
 * [Assigning textures](tools/textures.md)
+* [Building .ytd texture files](tools/ytd.md)
 * [Preview Texture](tools/texture-preview.md)
 * [Weights](tools/weights.md)
 * [Fit and placement](tools/fit-and-placement.md)
