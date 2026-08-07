@@ -47,6 +47,24 @@ Jiggle bones are kept even when still empty, because a later step fills them in.
 Pre-Flight Check reports leftovers on garments weighted before this, or set up outside
 the add-on.
 
+## Vertex groups from another game
+
+A garment ripped from another game arrives wearing that game's vertex groups —
+`b__L_Calf__`, `b__CAS_R_Breast__` and so on for The Sims 4.
+[Fit External to Body](../garments/external-garment.md) reads them as landmarks, which is
+what makes the fit work, but they must not reach the export: Sollumz refuses a file
+carrying a group that names no bone, and until then part of the garment is weighted to
+nothing.
+
+**Auto-Weight removes them**, because it has just rebuilt the skinning from the body — so
+anything that is not a bone is left over by definition. It then renormalises, which is not
+optional: those groups were carrying weight, and on a Sims sweater the weights summed to
+**0.50** after the removal. Left like that the garment would deform at half strength and
+collapse toward the origin in game.
+
+**Add Jiggle does not remove them**, because it keeps existing work rather than replacing
+it. Pre-Flight will name them.
+
 ## Repair tools
 
 | Button | Use it when |
