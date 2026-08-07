@@ -103,6 +103,25 @@ Joined first, they inherit the main garment's placement and the problem disappea
 The join keeps one material per piece, so each keeps its own texture — that is normal for
 GTA clothing, and Pre-Flight will confirm it rather than telling you to merge them.
 
+### The last few millimetres are yours
+
+The landmark fit lands within a few millimetres at every joint it can measure, and that is
+not always the same as looking right — a least-squares fit leaves a small residual by
+construction. On one sweater it read as the neck and cuffs sitting a touch low and the hem
+a touch short, while the bust was exactly where it belonged.
+
+**Nudge up** and **Size** in the redo panel (press **F9** straight after fitting) are the
+last word. They re-apply without re-running the fit, so you can dial a number in and watch
+it move.
+
+**Size scales about the chest, not the hem.** That is deliberate: the bust is the landmark
+the fit gets right and the one you notice when it is wrong, so growing the garment raises
+the neck, lengthens the sleeves and drops the hem while leaving the chest alone. On that
+sweater, 107% raised the neck 19 mm and dropped the hem 28 mm while the bust moved 3 mm.
+
+Scaling about the hem was tried first and is wrong for the same reason — it lifts the bust
+off the body.
+
 What the fit still cannot do is change the garment's shape. A bandeau top cut for a
 slimmer figure will sit below a larger bust however well it is placed; that is sculpting
 or [Drape](../tools/drape.md), not fitting.
