@@ -25,6 +25,55 @@ Measured on a test outfit, a dress over trousers: **0** vertices needed moving a
 body, **6** against the trousers. Without the trousers selected, the tool finds nothing to
 do and reports success.
 
+
+## Faces, not just corners
+
+A vertex test finds cloth that has sunk into the body. It cannot find a **face** whose
+interior cuts through while all three corners stay outside — and on a coarse garment that
+is most of the problem.
+
+Measured on a 1434-vertex sweater over the shoulders and bust: the vertex pass found and
+fixed everything it could see, taking the deepest breach from 18.6 mm to 1.0 mm, and the
+skin showing through **did not change at all**. The cloth was passing under the shoulder
+between its vertices.
+
+So each face's centroid and edge midpoints are sampled too, and the corners are lifted far
+enough to carry the whole face clear. Counting the skin actually visible inside the
+garment's silhouette in a render — which is what you see — that took the sweater from
+**2.27 % to 0.65 % from the front** and **1.91 % to 0.52 % from the back**, with the
+patches across the shoulders and bust gone entirely.
+
+### A corner already clear of the skin can still be lifted
+
+The corner's own nearest point on the body and the place its face cuts through are two
+different places. A cuff hanging 40 mm clear of the hand can still have the thumb coming
+through the middle of a face, and judged as an absolute distance from the skin that corner
+looks like it needs nothing.
+
+Those corners are lifted where they stand instead. On a measured sweater that took faces
+still cutting through from 50 to 37, and the skin visible from the front from 0.65 % to
+0.50 %.
+
+### It runs three times
+
+Lifting one face tilts its neighbours, which can open a shallow breach next door, so a
+single pass leaves work behind. On that sweater the faces still cutting through went
+**120 → 76 → 69 → 63** over three rounds and then stopped moving, so three is the default.
+It stops early when a round moves nothing, and seams held at 0 throughout.
+
+### The lift is capped at a quarter of the face
+
+A triangle laid across a curved body dips below it by roughly its own span squared over
+the body's radius, so a genuine coverage breach is always small next to the face: on that
+sweater, edges of 37 mm and a median dip of 2.2 mm.
+
+A face sunk deeper than a quarter of its own size is not failing to cover the body, it is
+sitting **inside** it — a placement problem, not a coverage one. One test garment arrived
+with 5594 faces a median 47 mm under the skin, and lifting each corner that far inflated
+the whole garment 26 mm off the body. With the cap it settles 6 mm out instead, and the
+vertex pass owns the rest.
+
+
 ## Fix Poke-Through
 
 Select the **body first**, Shift-select anything worn underneath, Shift-select the
@@ -94,6 +143,34 @@ wider, or reshaped in that area with **Push Out Selected**.
 
 Two or three rounds is normal. Fixing everything in one pass usually means the tool moved
 more than it needed to.
+
+## The hands are left alone
+
+A sleeve overlapping the hand is not a defect to repair. The hand is its own component in
+GTA, and the cuff of a long sleeve is meant to hang around it.
+
+Trying to fix it anyway does not work and does damage. Pressing the button **forty times**
+on a bell-sleeved sweater left the thumb through the cuff exactly as it started, while the
+cuff itself was dragged further out of shape on every press — it went visibly triangular.
+The reason is geometric: the hand sits *inside* the bell, so pushing cloth off the thumb
+pushes it nowhere useful, and the fix never converges.
+
+So garment vertices and faces within 110 mm of the wrist joint are skipped. With that in
+place the same forty presses move the cuff **0.0 mm** and everything else settles after
+about five.
+
+**Short sleeves are unaffected** — they never reach that far.
+
+**Gloves are the exception.** A garment with most of its geometry at the hands *is* the
+hands and has to conform to them, so it is detected by shape and fixed normally.
+
+### If the cuff really is in the thumb
+
+That is length, not penetration. Use `Lengthen` on
+[Tighten Sleeves](sleeves.md) with a negative value — on the measured sweater **−20 mm
+halved** the faces meeting the hand, from 20 to 10, and −40 mm took it to 7. How far to go
+is a design decision about how much of the hand the sleeve should cover, which is why it is
+a slider and not automatic.
 
 ## Common problems
 

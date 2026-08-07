@@ -16,6 +16,7 @@
 * [Hair](garments/hair.md)
 * [Shoes](garments/shoes.md)
 * [Clothing slot and file name](garments/clothing-slot.md)
+* [Trousers and shoes](garments/trousers-and-shoes.md)
 
 ## Jewellery and props
 
@@ -32,6 +33,7 @@
 * [Preview Texture](tools/texture-preview.md)
 * [Weights](tools/weights.md)
 * [Fit and placement](tools/fit-and-placement.md)
+* [Sleeves](tools/sleeves.md)
 * [Pose Test](tools/pose-test.md)
 * [Poke-through](tools/poke-through.md)
 * [Drape onto Body](tools/drape.md)
@@ -44,4 +46,5 @@
 * [It renders white in game](troubleshooting/white-in-game.md)
 * [It fits wrong or falls apart](troubleshooting/fits-wrong.md)
 * [Textures on Linux](troubleshooting/textures-on-linux.md)
+* ["Unable to pack file"](troubleshooting/unable-to-pack.md)
 * [The log file](troubleshooting/log-file.md)
