@@ -7,6 +7,15 @@ weights that keep a garment on the body, jiggle that follows movement, the right
 name for the clothing slot, the right shader, and the prop format for earrings and
 bracelets.
 
+**[Download the latest release](https://github.com/asarayja/asaraya-cloth-creator/releases/latest)**
+— install the `.zip` with Blender's *Install from Disk*, restart Blender, and check the
+panel header shows the version you just installed. Blender keeps the old code until it is
+restarted, and a version that does not match is the single most common reason a fix seems
+to have done nothing.
+
+Needs [Sollumz](https://github.com/Sollumz/Sollumz) and Blender 4.2 or newer. See
+[Installation](getting-started/installation.md).
+
 ## What do you want to do?
 
 | You have | You want | Start here |
