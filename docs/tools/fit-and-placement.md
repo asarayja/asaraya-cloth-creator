@@ -40,6 +40,24 @@ Useful when most of the garment is already right and you only want the strays pu
 | **Make Visible** | Un-hides a garment that was imported hidden, or hidden by accident |
 | **Detect Garment Type** | Works out whether it is a top, dress, skirt, trousers or shoes. Other tools use this to pick sensible defaults |
 
+## An outfit that comes in pieces
+
+Select every piece and press the button once. They are measured and moved **together**.
+
+That matters more than it sounds. Selecting all of them used to fit only the active one
+and leave the rest behind in the source file's coordinates — on a three-piece outfit two
+pieces ended up **442 mm and 1065 mm** out of place. Fitting them one at a time is no
+better: each gets its own best fit and the outfit pulls apart, by 42 mm and 67 mm on the
+same test.
+
+Measuring together also fits better than any piece could alone. A choker carries `Neck`
+and nothing else, a garter carries `Thigh`; neither has enough landmarks to place itself.
+Between them they span the body.
+
+Everything that follows the placement — poke-through, the hem lift — runs on every piece
+too. When it did not, the active piece came out 1.0 % inside the body while the two that
+were skipped sat at **79 % and 31 %**, which is the whole piece buried.
+
 ## Picking the right tool
 
 * **Tight clothing** — Shrinkwrap to Body

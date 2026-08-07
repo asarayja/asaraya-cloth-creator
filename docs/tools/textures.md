@@ -48,6 +48,23 @@ reference clothing, 92 contain `normal`, 92 contain `spec`, and the rest are `bu
 | `noise` | `AnisoNoiseSpecSampler` — the hair shaders' slot |
 | anything else | `DiffuseSampler` |
 
+### One typo is allowed
+
+Names of five characters or more also match **one edit away** — an insert, a delete or a
+substitution. Real files are typed by hand and come out misspelt: one garment in this
+project ships `normsl.dds`, and the exact match missed it completely, so a normal map went
+on the colour slot. That is the one mistake that makes a garment look obviously wrong
+rather than subtly off.
+
+The pixel check could not rescue it either. It looks for GTA's blue-dominant
+tangent-space convention, and that file is a Sims map with red and green at 0.50 and blue
+carrying nothing at all — measured R 0.505, G 0.502, B 0.505, against 0.49 / 0.50 / **1.00**
+on a GTA normal map. Its name was always the better evidence.
+
+Short needles like `spec` are matched exactly, because at four characters an edit-distance
+match starts colliding with ordinary words. Checked against all **244** texture names in
+this project, the change reclassifies exactly one file: `normsl`.
+
 ### When the name says nothing
 
 Files called `1.dds`, `A.dds` or `esp.dds` exist in real clothing folders, and a name like
