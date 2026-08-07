@@ -31,4 +31,5 @@ mistake it for a real texture assignment.
 ## What it is not
 
 It is **not** a texture assignment. When the garment is finished you still have to assign
-the real texture to the `DiffuseSampler` node, or it renders white in game.
+the real texture — see [Assigning textures](textures.md), which does the diffuse, normal
+and spec in one go.

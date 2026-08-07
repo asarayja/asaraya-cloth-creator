@@ -5,7 +5,7 @@ It sits on top of [Sollumz](https://sollumz.org) and handles the part Sollumz le
 you: weights, jiggle, fit, slot naming, shaders and the checks that catch a broken asset
 before it reaches the game.
 
-**Current version: 1.0.39** · Blender 4.2+
+**Current version: 1.0.40** · Blender 4.2+
 
 ## Install
 
@@ -31,6 +31,7 @@ Full instructions: [Installation](docs/getting-started/installation.md)
 | **Convert to Ear Prop** | turns a skinned accessory into a rigid ped prop, verified against vanilla files |
 | **Add Hair Jiggle** | weights hair down the head/spine/spring chain so the length lags instead of being welded to the skull |
 | **Mirror to Other Hand** | builds the opposite hand's ring from one side |
+| **Assign Textures** | diffuse, normal and spec onto the right nodes from one file pick |
 | **Set Shader + Surface** | ped shaders with measured metal / skin / fabric presets |
 
 ## Documentation

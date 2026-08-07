@@ -42,7 +42,10 @@ testing.
 **Set Shader**. Pick `ped.sps` for ordinary fabric, `ped_alpha.sps` if the texture has
 real transparency — lace, mesh, tulle. See [Shader and surface](../tools/shader-and-surface.md).
 
-To see the texture on the garment while you work, use
+**Assign Textures** puts the diffuse, normal and spec on the right nodes — pick any one of
+them and the others are found beside it. See [Assigning textures](../tools/textures.md).
+
+To see a texture on the garment while you work without committing to it, use
 [Preview Texture](../tools/texture-preview.md). It does not change the file.
 
 ### 6. Test and fix
