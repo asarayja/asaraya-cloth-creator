@@ -29,7 +29,7 @@ This is deliberate, and it is what makes the button usable rather than merely co
 
 A real garment folder often holds **no diffuse at all** — the reference `.ydd` folders in
 this project ship `feet_normal_002.dds` and `feet_spec_002.dds` and nothing else, because
-the colour lives in the `.ytd`. A garment from The Sims is the mirror image: its diffuse
+the colour lives in the `.ytd`. An imported garment is often the mirror image: its diffuse
 arrives already on the material from the `.blend`, and the normal and spec are the loose
 files you have to add.
 
@@ -57,7 +57,7 @@ on the colour slot. That is the one mistake that makes a garment look obviously 
 rather than subtly off.
 
 The pixel check could not rescue it either. It looks for GTA's blue-dominant
-tangent-space convention, and that file is a Sims map with red and green at 0.50 and blue
+tangent-space convention, and that file uses the other one, red and green at 0.50 and blue
 carrying nothing at all — measured R 0.505, G 0.502, B 0.505, against 0.49 / 0.50 / **1.00**
 on a GTA normal map. Its name was always the better evidence.
 

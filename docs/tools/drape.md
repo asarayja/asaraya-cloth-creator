@@ -33,7 +33,7 @@ substitute for fitting: if the garment is the wrong size, use
 
 A mesh ripped from a game is split along its UV seams — two vertices on the same point
 with no edge between them. The cloth solver pulls along edges, so each side of a seam fell
-on its own and the garment came apart: measured on a Sims dress, **395 of 718 seams
+on its own and the garment came apart: measured on an imported dress, **395 of 718 seams
 opened, the worst by seven metres**.
 
 Drape now runs the simulation on a welded stand-in and writes the result back onto the

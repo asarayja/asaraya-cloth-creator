@@ -4,7 +4,7 @@ Two things go wrong at the bottom of a trouser leg, and they are unrelated.
 
 ## The hem lands in the floor
 
-A trouser fitted by landmarks comes out too long. Measured on two Sims trousers, the hem
+A trouser fitted by landmarks comes out too long. Measured on two imported trousers, the hem
 landed **64 mm and 61 mm below the plane the ped stands on** — below the sole of every flat
 shoe in the reference set. In game the leg disappears into the pavement.
 

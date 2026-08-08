@@ -21,7 +21,7 @@ every material slot at a `.dds` next to the file it read. Those paths are stored
 **relative**, so they re-resolve against wherever *you* save your .blend, and Blender
 reports one missing file per slot from then on.
 
-It is easy to blame the garment — a Sims import does bring its own textures with it — but
+It is easy to blame the garment — an import does bring its own textures with it — but
 those arrive **packed inside the .blend**, which is why they never show up in this list.
 
 ## The fix
@@ -38,7 +38,7 @@ Only images that are **broken** (the file is genuinely missing), **not packed**,
 by **no material on any object** are removed. Your garment's own textures fail every one of
 those tests:
 
-* a Sims import's textures are packed, so they are kept whatever their path says
+* an import's textures are packed, so they are kept whatever their path says
 * a texture you assigned yourself sits on a live material, so it is kept even if the path
   is wrong — fix the path rather than losing the reference
 

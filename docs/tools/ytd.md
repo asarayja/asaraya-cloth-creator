@@ -61,7 +61,7 @@ no DDS export, no Pillow, and its bundled OpenImageIO lists the format but refus
 create one. So the compression has to happen in your texture tool, and the add-on takes it
 from there.
 
-Sizes up to 4096 × 4096 work, and non-square is fine — a Sims texture is usually
+Sizes up to 4096 × 4096 work, and non-square is fine — an imported texture is often
 2048 × 4096.
 
 ## About texture size

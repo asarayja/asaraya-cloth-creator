@@ -18,6 +18,26 @@ bell-sleeved sweater it bought 2 fewer faces and cost 9 mm of sleeve width at th
 a bad trade there, a good one on a sleeve that genuinely hangs too loose. Look at the
 garment and decide; nothing downstream needs it.
 
+
+## Do not run it on a sleeveless garment
+
+Measured on a sleeveless dress imported as a `.glb`, Align moved **1773 of 3735 vertices
+by a median 59 mm**, up to 118 mm. It wrecked it.
+
+The reason is the pose. The arms hang down beside the hips, so the flared side of a dress
+is nearer the arm than it is to the spine — and the arm passes *inside* the dress, so the
+cloth genuinely wraps it. Three separate tests were tried to tell the two apart and none
+of them separates on real data:
+
+* cloth in every band from armpit to wrist — the dress fills them all
+* cloth going right around the arm — the dress does, because the arm is inside it
+* distance to the arm — sleeves measure 65–79 mm and the non-sleeves 78–87 mm, overlapping
+
+So it is your judgement, not the tool's. **If the garment has no sleeves, do not press
+it.** There is no undo cost to checking: Align reports both sides and what happened to
+each.
+
+
 ## Align Sleeves to Arms
 
 Rotates each sleeve as one rigid piece about its shoulder so the tube lies along the arm.
@@ -36,7 +56,7 @@ distance-to-the-body, because the cloth is a normal distance from *some* part of
 body — just not from the arm it belongs on. Look only at the front and it appears fine.
 
 So what is measured is the offset between the sleeve's own centre line and the arm's. On
-two imported Sims sweaters, with the amount of arm left outside the sleeve alongside:
+two imported sweaters, with the amount of arm left outside the sleeve alongside:
 
 | Garment | Arm outside the sleeve |
 | --- | --- |
@@ -83,7 +103,7 @@ Note that the check needs **Base Body set in the panel** — that is what it mea
 against. Without it there is nothing to measure and the rotation is applied unchecked.
 
 That check earns its place. Before it existed, the button made the sleeves **worse** on
-three of four imported Sims garments — a median gap of 31.7 mm became 42.6 mm on one and
+three of four imported garments — a median gap of 31.7 mm became 42.6 mm on one and
 43.3 mm became 141.4 mm on another. A garment that has already been fitted by landmarks
 is pointing the right way; rotating it again only swings it off the arm.
 

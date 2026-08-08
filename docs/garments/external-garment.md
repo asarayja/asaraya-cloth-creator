@@ -14,7 +14,7 @@ The difference from a FiveM garment is that this one has **the wrong proportions
 
    Opening the source file and building the body **into** it works just as well, if the
    garment is already set up there. **Fit External to Body** removes the source rig for
-   you either way — a Sims dress arrives bound to a 165-bone rig of its own, and leaving
+   you either way — one imported dress arrives bound to a 165-bone rig of its own, and leaving
    it would mean the garment is deformed by two skeletons at once after weighting.
 3. Select the **Base Body first**, Shift-select the **garment**.
 4. **Fit External to Body** — scales and places the garment onto the body, removes the
@@ -50,6 +50,25 @@ than a game asset:
 * **Its origin is nowhere near its geometry.** Moving it by setting the object's location
   assumed otherwise and displaced it by the offset. Everything now goes through the world
   matrix, so where the origin sits stops mattering.
+
+
+### Turn off Push out for a delicate garment
+
+**Fit External to Body** clears the body out of the garment when it finishes, and for
+almost everything that is essential — an imported garment can arrive with half its vertices inside
+the body and is unusable without it.
+
+On a rig-less model it can be too much. A bounding-box fit gets the position and rough size
+right but cannot match the *shape* of a body fuller than the mannequin the piece was
+modelled on, so a lot ends up buried: on a chained halter top, **4321 of 13031 vertices
+started inside the body and 5408 faces cut through**, and clearing them moved 4633
+vertices by a median 36 mm. The neckband crumpled and the hem tore into spikes — while
+every number stayed healthy, because nothing had opened a seam and nothing was left inside.
+
+Untick **Push out of the body** in the redo panel and the garment comes through pristine.
+Then fix the clipping by hand, or by [poke-through](../tools/poke-through.md) on the parts
+that need it.
+
 
 ### Files that need a hand first
 
@@ -132,7 +151,7 @@ other garment.
 
 ## The source game's own character
 
-A .blend exported from Sims Studio contains the whole sim — body, head, teeth, feet —
+A .blend exported from a character creator contains the whole figure — body, head, teeth, feet —
 sitting beside the garment. It is not clothing; it is the mannequin the clothing was
 modelled on, and leaving it there means picking the wrong mesh and fitting the wrong
 object.
@@ -142,7 +161,7 @@ object.
 What identifies it is parenting, and the rule turned out to be exact. Checked over 125
 meshes in 20 real files, with no exceptions either way:
 
-* the sim's parts are **parented** to the source rig — 72 of 72
+* the figure's parts are **parented** to the source rig — 72 of 72
 * the garment or hair never is, only modifier-bound — 53 of 53
 
 So deleting the rig's children removes the figure and can never remove the clothing. It is
@@ -151,13 +170,13 @@ the same thing as *Delete Hierarchy* on the rig, which is what people do by hand
 **When the body is merged into the garment mesh itself**, nothing can separate them —
 there is no name or material to go by. Two of the test files were like that, and they have
 to be cleaned up in Blender first. [Pre-Flight](../tools/pre-flight-check.md) warns when
-the mesh you selected looks like the sim rather than the clothing.
+the mesh you selected looks like the figure rather than the clothing.
 
 
 ## It uses the source game's rig, if the garment still has it
 
 A garment ripped from another game almost always arrives with that game's vertex groups
-still on it — `b__L_Calf__`, `b__Spine1__`, `b__CAS_L_Breast__` for The Sims 4. Those
+still on it — names like `b__L_Calf__`, `b__Spine1__`, `b__CAS_L_Breast__`. Those
 groups are the best fitting information available, because they say which body part every
 vertex belongs to. A bounding box cannot know that.
 
@@ -166,7 +185,7 @@ the garment and the body, and solves for the scale, rotation and position that l
 up. It falls back to the old bounding-box method when a garment has no usable groups, and
 the report tells you which it used.
 
-The difference on three real Sims 4 garments, measured as the median distance from the
+The difference on three real imported garments, measured as the median distance from the
 garment to the body surface:
 
 | Garment | Bounding box | Bone groups |
@@ -197,7 +216,7 @@ This is the single thing that most often destroys a garment, and it is invisible
 happens.
 
 A game stores UVs per vertex, so wherever the texture has a seam the mesh carries **two
-vertices on the same point with no edge between them**. Across the Sims garments measured
+vertices on the same point with no edge between them**. Across the imported garments measured
 for this add-on that runs from 21% of the mesh to **100%** of it. Nothing about the vertex
 or face count reveals it.
 
@@ -216,7 +235,7 @@ On a male t-shirt that let 2 of 128 seams through, which opened by 8.5 mm.
 
 ### One outfit in several pieces
 
-The Sims often splits an outfit — trousers and a belt, a top and its sleeves. Fit them
+An export often splits an outfit — trousers and a belt, a top and its sleeves. Fit them
 separately and they drift apart: a belt fitted on its own landed **161 mm** above the
 trousers it belongs to, and 33 mm too tight, because a thin band carries too few bone
 groups to fit reliably.
