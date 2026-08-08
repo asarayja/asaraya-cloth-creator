@@ -27,6 +27,133 @@ The difference from a FiveM garment is that this one has **the wrong proportions
 8. **Set Clothing Slot / Name** → pick the clothing slot. See [Clothing slot](clothing-slot.md).
 9. **Pre-Flight Check**, fix anything marked ERROR, and export.
 
+
+
+## A model with no rig at all — .glb, .fbx, marketplace downloads
+
+Clothing bought or downloaded as a plain 3D model has no skeleton and no vertex groups, so
+there are no landmarks to fit by. It also arrives at whatever size the artist worked in.
+Measured across 16 `.glb` garments, the heights ran from **0.01 m to 1300 m** — four
+orders of magnitude, in the same folder.
+
+**They now land on the body at body scale regardless.** All 16 came out between 0.32 m and
+1.83 m, centred on the figure, with no hand adjustment: import, select every piece, press
+**Fit External to Body**.
+
+Two things had to be fixed for that, and both were about the model being a *model* rather
+than a game asset:
+
+* **It is usually several meshes.** The fit sized and moved only the active object, so a
+  two-piece outfit had one piece scaled and the other left where it was — one test garment
+  came out **146 m tall**. Every selected piece is now measured together and moved by the
+  same transform.
+* **Its origin is nowhere near its geometry.** Moving it by setting the object's location
+  assumed otherwise and displaced it by the offset. Everything now goes through the world
+  matrix, so where the origin sits stops mattering.
+
+### Files that need a hand first
+
+**The model's own mannequin often comes with it.** A `.blend` from a marketplace can hold
+the body it was fitted to, a backdrop plane and the rig's widget shapes; one `.fbx` brings
+the model's head along. None of that is clothing, and picking it by mistake fits the wrong
+object. Look at the outliner and select the garment.
+
+**Some `.fbx` files import as nothing.** One hair model here returns zero objects from
+Blender's importer at every setting, although the file plainly contains geometry — a
+`Vertices` array, four `Geometry` nodes and thirteen deformers are in there. That is a
+limitation of the importer, not of this add-on. Convert the file elsewhere first.
+
+### Textures come in on their own
+
+A `.glb` carries its textures inside the file, and Blender's importer unpacks them and
+wires them to the material for you — measured across eight files, every image that was in
+there arrived **packed into the .blend and connected**, at its original resolution up to
+2048×2048. Nothing has to be extracted by hand.
+
+Some models ship with no texture at all; two of the eight had none. Those need one
+assigning, see [Assigning textures](../tools/textures.md).
+
+### Height is measured below the neck
+
+Clothing does not cover the head, so the height it is matched against is the body from the
+**neck joint down**, not the whole figure. Matching the full height stretches a garment by
+exactly one head: a crop top and trousers came out 1.83 m on a 1.83 m body, with the
+neckline over the chin.
+
+### What it cannot know, and what to do about it
+
+**What the garment IS** — the file name answers it, so the fit now asks.
+
+A bounding box cannot tell a bikini from a dress, and measuring either against a whole
+1.83 m body made everything partial come out too big: a bikini landed 1.2 m tall with the
+straps hooping past the shoulders, and a pair of trousers put its waistband at the
+shoulders. The names are unambiguous, though. Across 42 downloaded garments the word
+*top* appears 20 times, *skirt* 8, *crop* 6, *pants* 5, *dress* 3.
+
+So **What is it** sits above the Fit button. Leave it on *Auto* and the name decides;
+override it when the name is unhelpful. Each kind is measured against the part of the body
+it covers, taken from the skeleton rather than from fixed heights so the male body needs no
+second table:
+
+| Kind | Covers |
+| --- | --- |
+| Crop top / bralette | Shoulders to the waist |
+| Top | Shoulders to the hip |
+| Bikini / lingerie | Bust and hips |
+| Necklace / chain | The neck — the `teef` component |
+| Skirt, Shorts | Waist to the knee |
+| Trousers | Waist to the ankle |
+| Dress | Shoulders to the knee |
+| Full outfit | Shoulders to the ankle |
+
+Measured on the same files, before and after: a pleated skirt went from **6.90 m to
+0.49 m**, trousers from 1.54 m to 0.90 m, a crop top to 0.48 m at the chest.
+
+Auto reads 39 of the 42 correctly. The three it declines are a hair model and two
+necklaces — and necklaces now read as `NECK`. Order decides ties, so *bikini set* is a
+bikini rather than an outfit, *corset waist dress* is a dress, and *crop top* is a crop.
+
+**A bikini is still the hard one.** Its box is far wider than it is tall — the straps reach
+out — so matching height undersizes it. Set the size by hand there.
+
+Two ways round it were tried and are worse, both recorded here so they are not tried
+again: matching **width** alone lets a tall model overshoot vertically, and **searching**
+for whichever scale ends up nearest the body picks grotesque sizes, because nearness is not
+enclosure — an oversized garment sweeps past a great many body points on its way by, and
+that put one pair of trousers at two and a half metres.
+
+So when a garment lands at the wrong size, use **Size** and **Nudge up** in the redo panel
+at the bottom left. They are there for exactly this, and they re-run instantly.
+
+Beyond that, the fit does not know a puffed sleeve from a fitted one, so expect to use
+[poke-through](../tools/poke-through.md) and the sleeve tools afterwards, as with any
+other garment.
+
+
+## The source game's own character
+
+A .blend exported from Sims Studio contains the whole sim — body, head, teeth, feet —
+sitting beside the garment. It is not clothing; it is the mannequin the clothing was
+modelled on, and leaving it there means picking the wrong mesh and fitting the wrong
+object.
+
+**Fit to Body deletes it for you**, along with the source rig it was bound to.
+
+What identifies it is parenting, and the rule turned out to be exact. Checked over 125
+meshes in 20 real files, with no exceptions either way:
+
+* the sim's parts are **parented** to the source rig — 72 of 72
+* the garment or hair never is, only modifier-bound — 53 of 53
+
+So deleting the rig's children removes the figure and can never remove the clothing. It is
+the same thing as *Delete Hierarchy* on the rig, which is what people do by hand.
+
+**When the body is merged into the garment mesh itself**, nothing can separate them —
+there is no name or material to go by. Two of the test files were like that, and they have
+to be cleaned up in Blender first. [Pre-Flight](../tools/pre-flight-check.md) warns when
+the mesh you selected looks like the sim rather than the clothing.
+
+
 ## It uses the source game's rig, if the garment still has it
 
 A garment ripped from another game almost always arrives with that game's vertex groups

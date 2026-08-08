@@ -6,6 +6,26 @@ before you do anything else.**
 
 You do this **once per scene**, not once per garment.
 
+
+## What it looks like
+
+The body comes out **plain grey**, with one simple material on it.
+
+That is deliberate. The imported body arrives with GTA's `ped.sps` materials, and with
+their textures missing it renders **solid black** in Material Preview and Rendered — a
+silhouette you cannot read at all. Solid shading looks fine, which is why it is easy to
+miss until you switch shading mode and the ped disappears.
+
+Filling the empty texture slots with a grey image was tried and does not fix it: the torso
+and head stayed black while the legs went grey. One plain Principled material renders the
+whole body evenly, and it behaves the same on Linux and Windows because nothing has to be
+found on disk.
+
+Nothing is lost by this. The base body is a weight source and a surface to measure
+against — it is never exported and never seen in game, and everything the add-on measures
+reads geometry, not materials.
+
+
 ## Steps
 
 1. Choose **Female** or **Male** at the top of the panel.

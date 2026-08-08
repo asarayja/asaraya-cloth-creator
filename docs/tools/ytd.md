@@ -19,9 +19,26 @@ Cloth Tool looks for them:
 
 | Kind | Name |
 | --- | --- |
-| Component | `jbib_diff_000_a_uni.ytd`, `_b_uni`, `_c_uni` … |
+| Component | `mp_f_freemode_01^jbib_diff_000_a_uni.ytd`, `_b_uni`, `_c_uni` … |
 | Component, race-dependent | `_a_whi.ytd` when the variant is set to `r` |
-| Prop | `p_ears_diff_002_a.ytd` — no race suffix |
+| Prop | `mp_f_freemode_01^p_ears_diff_002_a.ytd` — no race suffix |
+
+## The ped goes in front
+
+Everything before the caret is the ped model, and `mp_m_freemode_01` replaces
+`mp_f_freemode_01` when the gender is set to male. **28 of the 30 reference `.ytd` files
+measured for this add-on carry one** — the two that do not are loose files — so a name
+without it is wrong.
+
+`Pack name` puts your own collection's name after the ped, which is the other form found
+in working clothing:
+
+```
+mp_f_freemode_01^jbib_diff_000_a_uni.ytd              pack name empty
+mp_f_freemode_01_yourpack^jbib_diff_000_a_uni.ytd     pack name "yourpack"
+```
+
+Both work. Leave it empty unless your pack already uses the longer form.
 
 ## The letters matter
 

@@ -3,6 +3,57 @@
 Hair goes in the `hair` slot (component 2) and uses the `ped_hair_cutout_alpha.sps`
 shader. The part that is not obvious is the movement.
 
+
+## The sim does not have to be in the file
+
+Delete the rig first or leave it — the result is **identical**. Measured across nine
+hairstyles, both ways: the same scale to four decimals and the same placement to the
+pixel.
+
+That is deliberate. The sim was always going to be deleted, so needing it would have been
+a trap: an earlier version aimed by the head in the file, and tidying up first made the
+scale scatter to **1.172** and put one style over 99 % of the face.
+
+## Fitting Sims hair to the head
+
+Hair carries almost no bones, so the landmark fit that places clothing has little to work
+with: of nine test hairstyles, five had only `Head` and `Spine2` and were refused
+outright, and the four that passed had 4–5 pairs and produced scales from 0.88 to 1.15 —
+from a rig where clothing, with 26 pairs, reports 0.95–1.00 every time. That spread is
+noise, not size.
+
+So hair is fitted its own way, and two measurements drive it.
+
+**It is scaled to the skull.** The Sims female skull is wider than GTA's exactly where
+hair sits. Measured at four heights below the crown, on the head mesh that ships with
+every one of the nine files:
+
+| Below the crown | GTA | Sims | Ratio |
+| --- | --- | --- | --- |
+| 20 mm | 113 mm | 119 mm | 0.947 |
+| 40 mm | 135 mm | 151 mm | 0.896 |
+| 60 mm | 147 mm | 160 mm | 0.916 |
+| 80 mm | 155 mm | 162 mm | 0.956 |
+
+Mean **0.929**, and all nine files agree exactly because it is the same head. Comparing
+the widest point of the whole head instead gives 181 mm against 180 and says they are the
+same size — those maxima land at the jaw, not on the cranium, which is why this was missed
+at first.
+
+**It is aimed by where the Sims head is known to sit.** Sims Studio writes everything in
+the sim's rest frame, so the head is in the same place in every export — measured across
+all nine files, the largest disagreement is **0.00 mm on all three axes**. That makes the
+whole transform a constant, and the head itself unnecessary.
+
+The head in the file is still used when it happens to be there, purely as a cross-check;
+it gives the same answer. And if the hair lands more than 350 mm from where a head should
+be, the file was not written in that frame, so it falls back to the hair's own crown and
+tells you.
+
+Aiming by the hair's own centre is what it must *not* do: hair hanging down the back drags
+the median with it and pushes a long style forwards onto the face.
+
+
 ## Steps
 
 1. **Build Full Body** if you have not already.
